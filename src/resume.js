@@ -1,3 +1,59 @@
+/**
+ * @file resume.js
+ * @module resume
+ *
+ * @description
+ * This module provides resume data and functions to extract role-based views of the resume.
+ * It exports the complete resume information and two utility functions that allow
+ * filtering of the resume data depending on the specified role.
+ *
+ * The module includes:
+ *
+ * 1. The "resume" object:
+ *    - @property {string|string[]} bio - A bio description of the candidate.
+ *    - @property {Object[]} contacts - An array of contact objects. Each object contains:
+ *         - href {string}: The URL or contact link.
+ *         - icon {Component}: The icon component imported from '@tabler/icons-vue'.
+ *         - text {string}: The display text for the contact.
+ *    - @property {Object[]} references - An array of reference objects. Each object includes:
+ *         - name {string}: The reference's name.
+ *         - title {string}: The reference's title.
+ *         - company {string}: The company of the reference.
+ *         - location {string}: The location of the reference.
+ *         - phone {string}: The reference's phone number.
+ *         - email {string}: The reference's email.
+ *    - @property {Object[]} experience - An array of experience objects. Each object includes:
+ *         - title {string}: The job title.
+ *         - company {string}: The name of the company.
+ *         - location {string}: The job location.
+ *         - date {string}: Duration of the experience.
+ *         - link {string}: A URL linking to the company or project.
+ *         - bullets {string[]}: Key achievements or tasks.
+ *    - @property {Object[]} projects - An array of project objects. Each object includes:
+ *         - title {string}: The project title.
+ *         - stack {string}: The technology stack used.
+ *         - link {string}: A URL linking to the project.
+ *         - bullets {string[]}: Key features or accomplishments.
+ *
+ * 2. The "roles" object:
+ *    - An internal configuration that maps role identifiers (e.g., "default" or "finance") to arrays of indices.
+ *      These indices specify which items from each section of the resume (bio, contacts, references, experience,
+ *      projects) are applicable for the respective role variation.
+ *
+ * 3. The getRoleData(role) function:
+ *    - @function
+ *    - @param {string} role - A key corresponding to a role configuration in the "roles" object.
+ *    - @returns {Object} An object containing the resume data filtered according to the specified role.
+ *      For the "bio" property, only a single string value is returned.
+ *
+ * 4. The getResume(fields, role) function:
+ *    - @function
+ *    - @param {string[]} fields - An array of keys indicating which sections of the resume should be returned.
+ *    - @param {string} [role="default"] - Specifies the role variant to use for filtering resume data.
+ *    - @returns {Object} An object that includes only the requested resume fields from the role-based data.
+ */
+
+
 import {
     IconWorldWww,
     IconBrandGithub,
@@ -6,6 +62,8 @@ import {
     IconMapPin,
     IconDeviceMobile,
 } from '@tabler/icons-vue';
+
+
 
 
 export const resume = {
